@@ -6,12 +6,8 @@ import ButtonLink from "@/app/_components/ButtonLink";
 import styles from "./page.module.css";
 
 type Props = {
-  params: {
-    slug: string;
-  };
-  searchParams: {
-    dk?: string;
-  };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ dk?: string }>;
 };
 
 // export async function generateMetadata({
@@ -34,15 +30,18 @@ type Props = {
 // }
 
 export default async function Page({ params, searchParams }: Props) {
-  const data = await getNewsDetail(params.slug, {
-    draftKey: searchParams.dk,
+  const { slug } = await params;
+  const { dk = "" } = await searchParams;
+
+  const data = await getNewsDetail(slug, {
+    draftKey: dk,
   }).catch(notFound);
 
   return (
     <>
       <Article data={data} />
       <div className={styles.footer}>
-        <ButtonLink href="/news">ニュース一覧へ</ButtonLink>
+        <ButtonLink href="/news">Back to News page</ButtonLink>
       </div>
     </>
   );
