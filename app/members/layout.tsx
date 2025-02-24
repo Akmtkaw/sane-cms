@@ -13,7 +13,7 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <>
-      <Hero title="Members" sub="Member" />
+      <Hero title="Members" sub="Members" />
       <Sheet>{children}</Sheet>
       {/* <GoogleAnalytics gaId="G-XXX" /> */}
     </>
