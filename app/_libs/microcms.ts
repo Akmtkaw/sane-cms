@@ -12,31 +12,17 @@ export type Member = {
   image: MicroCMSImage;
 } & MicroCMSListContent;
 
-// export type Category = {
-//   name: string;
-// } & MicroCMSListContent;
-
 export type Category = {
   name: string;
-};
-
-// export type News = {
-//   title: string;
-//   description: string;
-//   content: string;
-//   thumbnail?: MicroCMSImage;
-//   category: Category;
-// } & MicroCMSListContent;
+} & MicroCMSListContent;
 
 export type News = {
-  id: string;
   title: string;
-  category: {
-    name: string;
-  };
-  publishedAt: string;
-  createdAt: string;
-};
+  description: string;
+  content: string;
+  thumbnail?: MicroCMSImage;
+  category: Category;
+} & MicroCMSListContent;
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
   throw new Error("MICROCMS_SERVICE_DOMAIN is required");
