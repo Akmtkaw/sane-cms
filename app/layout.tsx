@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+// import { GoogleAnalytics } from "@next/third-parties/google";
+import type { Metadata } from "next";
 import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 
@@ -13,6 +15,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const metadata: Metadata = {
+  metadataBase: new URL("http://localhost:3000"),
+  title: {
+    template: "%s | simple corporate site",
+    default: "simple corporate site",
+  },
+  description:
+    'This is a website created with "Getting Started with Next.js + Headless CMS! Easy & Modern Website Development Guide."',
+  openGraph: {
+    title: "Simple Corporate Website",
+    description:
+      'This is a website created with "Getting Started with Next.js + Headless CMS! Easy & Modern Website Development Guide."',
+    images: ["/ogp.png"],
+  },
+  alternates: {
+    canonical: "http://localhost:3000",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,6 +46,7 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
+      {/* <GoogleAnalytics gaId="G-hogehoge" /> */}
     </html>
   );
 }
